@@ -41,30 +41,32 @@ namespace FromsProject.EntityFrameworkCore.Seed.Host
 
             var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
                 .OfType<RolePermissionSetting>()
-                .Where(p => p.TenantId == null && p.RoleId == adminRoleForHost.Id)
+                .Where(
+                    p => p.TenantId == null && p.RoleId == adminRoleForHost.Id
+                    && (
+                        p.Name == PermissionNames.Pages_Roles ||
+                        p.Name == PermissionNames.Pages_Users ||
+                        p.Name == PermissionNames.Pages_Tenants ||
+                        p.Name == PermissionNames.Pages_Questionnaries ||
+                        p.Name == PermissionNames.Pages_Answers
+                ))
                 .Select(p => p.Name)
+                .Distinct()
                 .ToList();
 
             var permissions = PermissionFinder
                 .GetAllPermissions(new FromsProjectAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Host) &&
-                            !grantedPermissions.Contains(p.Name))
-                .ToList();
+                            !grantedPermissions.Contains(p.Name)
+                             && (
+                                p.Name == PermissionNames.Pages_Roles ||
+                                p.Name == PermissionNames.Pages_Users ||
+                                p.Name == PermissionNames.Pages_Tenants ||
+                                p.Name == PermissionNames.Pages_Questionnaries ||
+                                p.Name == PermissionNames.Pages_Answers 
+                                ))
 
-            if (permissions.Any())
-            {
-                _context.Permissions.AddRange(
-                    permissions.Select(permission => new RolePermissionSetting
-                    {
-                        TenantId = null,
-                        Name = permission.Name,
-                        IsGranted = true,
-                        RoleId = adminRoleForHost.Id
-                    })
-                );
-                _context.SaveChanges();
-            }
-
+                  .ToList();
             // Admin user for host
 
             var adminUserForHost = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == null && u.UserName == AbpUserBase.AdminUserName);
