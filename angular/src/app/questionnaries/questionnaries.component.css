@@ -1,0 +1,52 @@
+.main {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.example-card {
+    max-width: 250px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.btnCard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.members {
+    flex-direction: row;
+    gap: 8px;
+    display: flex;
+}
+
+.toolsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+.AllTools {
+    text-align: center;
+}
+
+.contentAll {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}

@@ -59,6 +59,16 @@ import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EditQuestionnariesComponent } from './questionnaries/edit-elements-to-questionnarie/edit-questionnaries/edit-questionnaries.component';
+import { EditSectionComponent } from './questionnaries/edit-elements-to-questionnarie/edit-section/edit-section.component';
+import { EditQuestionComponent } from './questionnaries/edit-elements-to-questionnarie/edit-question/edit-question.component';
+import { EditAlternativeComponent } from './questionnaries/edit-elements-to-questionnarie/edit-alternative/edit-alternative.component';
+import { CreateAlternativeComponent } from './questionnaries/create-elements-to-questionnarie/create-alternative/create-alternative.component';
+import { CreateSessionComponent } from './questionnaries/create-elements-to-questionnarie/create-session/create-session.component';
+import { CreateQuestionComponent } from './questionnaries/create-elements-to-questionnarie/create-question/create-question.component';
+import { QuestionnariesComponent } from './questionnaries/questionnaries.component';
+import { ContentQuestionnariesComponent } from './questionnaries/content-questionnaries/content-questionnaries.component';
+import { CreateQuestionnarieComponent } from './questionnaries/create-questionnarie/create-questionnarie.component';
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
@@ -89,7 +99,17 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     SidebarComponent,
     SidebarLogoComponent,
     SidebarUserPanelComponent,
-    SidebarMenuComponent
+    SidebarMenuComponent,
+    EditSectionComponent,
+    EditQuestionComponent,
+    EditAlternativeComponent,
+    CreateAlternativeComponent,
+    CreateSessionComponent,
+    CreateQuestionComponent,
+    EditQuestionnariesComponent,
+    QuestionnariesComponent,
+    ContentQuestionnariesComponent,
+    CreateQuestionnarieComponent
   ],
   imports: [
     CommonModule,

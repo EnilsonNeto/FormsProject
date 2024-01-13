@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Editar Alternativa</h4>
+    <button mat-dialog-close type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #editForm="ngForm" (ngSubmit)="save()" novalidate>
+        <div class="form-group">
+            <mat-form-field appearance="outline" class="Input">
+                <mat-label>Titulo</mat-label>
+                <input class="input-place" matInput name="alternativeQuestionnarieTitle" [(ngModel)]="alternativeQuestionnarieTitle"
+                    placeholder="Digite o título" maxlength="256" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="Input">
+                <mat-label>Valor</mat-label>
+                <input class="input-place" matInput name="alternativeQuestionnarieValue" [(ngModel)]="alternativeQuestionnarieValue"
+                    placeholder="Digite a descrição da questão" maxlength="256" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="Input">
+                <mat-label>Tipo</mat-label>
+                <mat-select [(ngModel)]="alternativeQuestionnarieType" name="alternativeQuestionnarieType">
+                    <mat-option value="radio">Única escolha</mat-option>
+                    <mat-option value="multiple">Caixa de seleção</mat-option>
+                    <mat-option value="input">Caixa de Digitação</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <input type="hidden" id="alternativeQuestionnarieId" [(ngModel)]="alternativeQuestionnarieId" name="alternativeQuestionnarieId" class="form-control" required>
+            <input type="hidden" id="alternativeQuestionnarieQuestionId" [(ngModel)]="alternativeQuestionnarieQuestionId" name="alternativeQuestionnarieQuestionId" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button mat-dialog-close type="submit" class="btn btn-primary" [disabled]="!editForm.valid || saving">Salvar</button>
+            <button mat-dialog-close type="button" class="btn btn-secondary"
+                (click)="bsModalRef.hide()">Cancelar</button>
+        </div>
+    </form>
+</div>

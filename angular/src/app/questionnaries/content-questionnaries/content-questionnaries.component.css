@@ -1,0 +1,38 @@
+.main {
+    text-align: center;
+}
+
+.multipleContainer {
+    display: flex;
+}
+
+.radioContainer {
+    display: flex;
+}
+
+.cardSection {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.mainCard {
+    background-color: #f3f3f3 !important;
+}
+
+.questions {
+    margin-bottom: 15px;
+}
+
+.addQuestion{
+    width: 144px;
+}
+
+.btn{
+    background: none;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+}

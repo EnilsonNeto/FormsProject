@@ -1,0 +1,91 @@
+.headerForm {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-card {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.baseCard {
+    background-color: #f3f3f3 !important;
+}
+
+.buttonPrevious {
+    border: none;
+    width: 40px;
+    height: 35px;
+    border-radius: 100px;
+}
+
+.BackIcon {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 100px;
+}
+
+.remove {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.direction {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btnGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.questionaries {
+    width: 84%;
+}
+
+.buttonsCard {
+    max-height: 210px !important;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.alternativeBox {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+#removeAlternatives {
+    margin-bottom: 30px;
+}
+
+.Separation{
+    border-top: 2px solid #CED4DA;
+    margin-bottom: 1.5rem;
+}
+
+.AddInfo{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 8px;
+}
+
+.radios {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}

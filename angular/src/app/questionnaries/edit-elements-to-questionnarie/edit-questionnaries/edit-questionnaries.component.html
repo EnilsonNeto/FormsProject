@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Editar Questionário</h4>
+    <button mat-dialog-close type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #editForm="ngForm" (ngSubmit)="save()" novalidate>
+        <div class="form-group">
+            <mat-form-field appearance="outline" class="Input">
+                <mat-label>Titulo</mat-label>
+                <input class="input-place" matInput name="headerQuestionnarieTitle" [(ngModel)]="headerQuestionnarieTitle"
+                    placeholder="Digite o título" maxlength="256" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="Input">
+                <mat-label>Descrição</mat-label>
+                <input class="input-place" matInput name="headerQuestionnarieDescription" [(ngModel)]="headerQuestionnarieDescription"
+                    placeholder="Digite a descrição da questão" maxlength="256" required>
+            </mat-form-field>
+            <!-- 
+            <mat-form-field appearance="outline" class="Input">
+                <mat-label>Sections</mat-label>
+                <input class="input-place" matInput name="headerQuestionnarieSections" [(ngModel)]="headerQuestionnarieSections"
+                    placeholder="Digite a sections" maxlength="256" required>
+            </mat-form-field>
+                <select *ngFor="let section of headerQuestionnarieSections">
+                    <option [value]="section.valor">{{ section }}</option>
+                </select> 
+            -->
+            <mat-form-field appearance="outline" class="Input">
+                <mat-label>Fórmula</mat-label>
+                <input class="input-place" matInput name="headerQuestionnarieFormula" [(ngModel)]="headerQuestionnarieFormula"
+                    placeholder="Digite a fórmula" maxlength="256">
+            </mat-form-field>
+            <input type="hidden" id="headerQuestionnarieId" [(ngModel)]="headerQuestionnarieId" name="headerQuestionnarieId" class="form-control" required>
+            <input type="hidden" id="headerQuestionnarieJourneyId" [(ngModel)]="headerQuestionnarieJourneyId" name="headerQuestionnarieJourneyId" class="form-control" required>
+        
+        </div>
+        <div class="form-group">
+            <button mat-dialog-close type="submit" class="btn btn-primary" [disabled]="!editForm.valid || saving">Salvar</button>
+            <button mat-dialog-close type="button" class="btn btn-secondary"
+                (click)="bsModalRef.hide()">Cancelar</button>
+        </div>
+    </form>
+</div>

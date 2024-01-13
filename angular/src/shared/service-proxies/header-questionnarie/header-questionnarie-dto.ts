@@ -1,14 +1,10 @@
 import { SectionDto } from '../section/section-dto';
-import { JourneyDto } from './../journey/journey-dto';
 
 export interface IHeaderQuestionnarieDto {
     id: string;
     title: string;
     description: string;
-    journeyId: string;
-    journey: JourneyDto;
     sections: SectionDto;
-    formula?: string;
     isRequired: boolean;
 }
 
@@ -24,10 +20,7 @@ export class HeaderQuestionnarieDto implements IHeaderQuestionnarieDto {
     id: string;
     title: string;
     description: string;
-    journeyId: string;
-    journey: JourneyDto;
     sections: SectionDto;
-    formula?: string;
     isRequired: boolean;
 
     constructor(data?: IHeaderQuestionnarieDto) {
@@ -45,10 +38,7 @@ export class HeaderQuestionnarieDto implements IHeaderQuestionnarieDto {
             this.id = data.id;
             this.title = data.title;
             this.description = data.description;
-            this.journeyId = data.journeyId;
-            this.journey = data.journey;
             this.sections = data.sections;
-            this.formula = data.formula;
             this.isRequired = data.isRequired;
         }
     }
@@ -58,10 +48,7 @@ export class HeaderQuestionnarieDto implements IHeaderQuestionnarieDto {
         data.id = this.id;
         data.title = this.title;
         data.description = this.description;
-        data.journeyId = this.journeyId;
-        data.journey = this.journey;
         data.sections = this.sections;
-        data.formula = this.formula;
         data.isRequired = this.isRequired;
         return data;
     }

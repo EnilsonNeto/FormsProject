@@ -1,0 +1,15 @@
+<form [formGroup]="FormGroup" (ngSubmit)="createQuestion()">
+    <mat-form-field appearance="outline" class="Input">
+        <mat-label>Titulo da sessão</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="Input">
+        <mat-label>Descrição</mat-label>
+        <input matInput formControlName="description">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="Input">
+        <mat-label>Fórmula</mat-label>
+        <input matInput formControlName="formula">
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">Create Question</button>
+</form>

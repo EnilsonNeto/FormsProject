@@ -1,0 +1,67 @@
+<hr>
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstStep">
+        <div class="main" *ngIf="headerQuestionnarie === false">
+            <div class="toolsContainer">
+                <div class="tools">
+                    <h3>Principais desfechos de reavaliação - Recomendações STEPS</h3>
+                    <div *ngFor="let questionnarie of questionnariesTrue">
+                        <mat-card class="example-card">
+                            <button mat-icon-button color="warn"
+                                (click)="removeQuestionnarie(questionnarie.id)">
+                                <mat-icon>delete</mat-icon></button>
+                            <mat-card-title>{{questionnarie.title}}</mat-card-title>
+                            <p>{{questionnarie.description}}</p>
+                            <button mat-flat-button color="primary" [disabled]="questionnarie.concluded"
+                                (click)="viewQuestionnarie(questionnarie)">Ver Ferramenta</button>
+                                <button mat-flat-button color="primary" (click)="openEditModal(questionnarie)">Editar Questionário</button>
+                        </mat-card>
+                    </div>
+                </div>
+                <hr>
+                <div class="tools">
+                    <h3>Desfechos Opcionais para a reavaliação - Recomendações STEPS</h3>
+                    <div *ngFor="let questionnarie of questionnariesFalse">
+                        <mat-card class="example-card">
+                            <button mat-icon-button color="warn"
+                                (click)="removeQuestionnarie(questionnarie.id)">
+                                <mat-icon>delete</mat-icon></button>
+                            <mat-card-title>{{questionnarie.title}}</mat-card-title>
+                            <p>{{questionnarie.description}}</p>
+                            <button mat-flat-button color="primary" [disabled]="questionnarie.concluded"
+                                (click)="viewQuestionnarie(questionnarie)">Ver Ferramenta</button>
+                                <button mat-flat-button color="primary" (click)="openEditModal(questionnarie)">Editar Questionário</button>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button mat-flat-button color="primary" (click)="viewAllTools()">Ver outras ferramentas</button>
+        <hr>
+        <div class="AllTools">
+            <h2 *ngIf="allQuestionnaries.length > 0">Todas as Ferramentas</h2>
+            <div class="contentAll">
+                <div *ngFor="let selected of allQuestionnaries">
+                    <mat-card class="example-card">
+                        <button mat-icon-button color="warn"
+                            (click)="removeQuestionnarie(selected.id)">
+                            <mat-icon>delete</mat-icon></button>
+                        <mat-card-title>{{selected.title}}</mat-card-title>
+                        <p>{{selected.description}}</p>
+                        <button mat-flat-button color="primary" [disabled]="allQuestionnariesConcluded[selected.id]"
+                            (click)="viewQuestionnarie(selected)">Ver Ferramenta</button>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <button mat-flat-button color="primary" matStepperNext>Adicionar
+            Ferramentas</button>
+        <app-content-questionnaries [header]="informationsArray" (resultArrayChange)="onResultArrayChange($event)"
+            (questionnarieSaved)="createQuestionnarie()" (questionnarieConcluded)="onQuestionnarieConcluded($event)"
+            *ngIf="headerQuestionnarie != false"></app-content-questionnaries>
+    </mat-step>
+    <mat-step [stepControl]="secondStep">
+        <app-create-questionnarie [journey]="journeyId"
+            (questionnarieSaved)="getHeader()"></app-create-questionnarie>
+    </mat-step>
+</mat-horizontal-stepper>

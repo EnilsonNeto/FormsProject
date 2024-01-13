@@ -1,0 +1,20 @@
+<form [formGroup]="FormGroup" (ngSubmit)="createAlternative()">
+  <mat-form-field appearance="outline" class="Input">
+      <mat-label>Titulo da alternativa</mat-label>
+      <input matInput formControlName="title">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="Input">
+      <mat-label>Valor</mat-label>
+      <input matInput formControlName="value">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo da alternativa</mat-label>
+    <mat-select formControlName="type">
+        <mat-option value="radio">Única escolha</mat-option>
+        <mat-option value="multiple">Caixa de seleção</mat-option>
+        <mat-option value="input">Caixa de Digitação</mat-option>
+    </mat-select>
+</mat-form-field>
+
+  <button mat-flat-button color="primary" type="submit">Create alternativa</button>
+</form>

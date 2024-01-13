@@ -49,6 +49,11 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'fas fa-theater-masks',
                 'Pages.Roles'
             ),
+            new MenuItem(
+                this.l('Questionarios'),
+                '/app/questionnaries',
+                'fas fa-theater-masks',
+            ),
         ];
     }
 

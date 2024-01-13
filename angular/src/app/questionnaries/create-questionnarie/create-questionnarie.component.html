@@ -1,0 +1,136 @@
+<div class="main">
+    <button matStepperPrevious class="buttonPrevious">
+        <i class="fa fa-chevron-left BackIcon"></i>
+    </button>
+    <mat-card class="baseCard">
+        <div class="direction">
+            <div class="questionaries">
+                <mat-card>
+                    <div class="header">
+                        <form [formGroup]="headerFormGroup" class="headerForm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Titulo da Ferramenta</mat-label>
+                                <input type="text" matInput formControlName="title">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Descrição da Ferramenta</mat-label>
+                                <input type="text" matInput formControlName="description">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Formula da Ferramenta</mat-label>
+                                <input type="text" matInput formControlName="formula">
+                            </mat-form-field>
+                            <h3>Esta ferramenta será obrigatoria?*</h3>
+                            <mat-radio-group formControlName="isRequired" class="radios">
+                                <mat-radio-button value="true" 
+                                (click)="updateIsRequired('true')">Sim</mat-radio-button>
+                                <mat-radio-button value="false"
+                                    (click)="updateIsRequired('false')">Não</mat-radio-button>
+                            </mat-radio-group>
+                        </form>
+                    </div>
+                </mat-card>
+                <div class="Section" *ngFor="let section of sections; let i = index">
+                    <mat-card>
+                        <div class="remove">
+                            <button *ngIf="sections.length >= 0" (click)="removeSection(i)" mat-flat-button
+                                color="warn">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                        <hr>
+                        <form [formGroup]="section.formGroup" class="headerForm"
+                            *ngIf="section.formGroup.value.title != 'vazio'">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Titulo da Sessão</mat-label>
+                                <input type="text" matInput formControlName="title">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Subtitulo da Sessão</mat-label>
+                                <input type="text" matInput formControlName="subTitle">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Descrição da Sessão</mat-label>
+                                <input type="text" matInput formControlName="description">
+                            </mat-form-field>
+                            <div class="addFormulaQuestionary" *ngIf="section.showFormula">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Formula da Sessão</mat-label>
+                                    <input type="text" matInput formControlName="formula">
+                                </mat-form-field>
+                            </div>
+                            <div class="Separation"></div>
+                            <div class="AddInfo">
+                                <button (click)="addQuestion(i)" mat-flat-button color="primary"
+                                    *ngIf="section.visible">Adicionar
+                                    Pergunta</button>
+                                <button type="button" ng mat-flat-button color="primary" (click)="toggleShowFormula(i)"
+                                    matStepperNext>
+                                    {{"+ Adicionar Fórmula" | localize }}</button>
+                            </div>
+                        </form>
+                        <div class="Question" *ngFor="let question of section.questions; let j = index">
+                            <div class="remove">
+                                <button *ngIf="section.questions.length >= 0 && question.visible"
+                                    (click)="removeQuestion(i, j)" mat-flat-button
+                                    color="warn"><mat-icon>delete</mat-icon></button>
+                            </div>
+                            <form [formGroup]="question.formGroup" class="headerForm"
+                                *ngIf="question.formGroup.value.title != 'vazio'">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Titulo da Pergunta</mat-label>
+                                    <input type="text" matInput formControlName="title">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Descrição da Pergunta</mat-label>
+                                    <input type="text" matInput formControlName="description">
+                                </mat-form-field>
+                            </form>
+                            <div class="Alternatives"
+                                *ngFor="let alternative of section.questions[j].alternatives; let k = index">
+                                <form [formGroup]="alternative.formGroup" class="alternativeBox">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Tipo da alternativa</mat-label>
+                                        <mat-select formControlName="type">
+                                            <mat-option value="radio">Única escolha</mat-option>
+                                            <mat-option value="multiple">Caixa de seleção</mat-option>
+                                            <mat-option value="input">Caixa de Digitação</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Titulo da alternativa</mat-label>
+                                        <input type="text" matInput formControlName="title">
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Valor da Alternativa</mat-label>
+                                        <input type="text" matInput formControlName="value">
+                                    </mat-form-field>
+                                    <button *ngIf="section.questions[j].alternatives.length >= 0"
+                                        id="removeAlternatives" (click)="removeAlternative(i, j, k)" mat-icon-button
+                                        color="warn"><mat-icon>delete</mat-icon></button>
+                                </form>
+                            </div>
+                            <button (click)="addAlternative(i, j)" mat-flat-button color="primary">Adicionar
+                                Alternativa</button>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+            <mat-card class="buttonsCard">
+                <p><b>Adicionar Separadamente</b></p>
+                <div class="btnGroup">
+                    <button (click)="addSection()" mat-flat-button color="primary">Adicionar Sessão</button>
+                    <button (click)="addQuestionWithInvisibleSection()" mat-flat-button color="primary">Adicionar
+                        Pergunta</button>
+                    <button (click)="addAlternativeWithInvisibleSection()" mat-flat-button color="primary">Adicionar
+                        Alternativa</button>
+                </div>
+            </mat-card>
+        </div>
+        <hr>
+        <div class="remove">
+            <button matStepperPrevious (click)="createQuestionnarie()" mat-flat-button color="primary">Criar
+                Ferramenta</button>
+        </div>
+    </mat-card>
+</div>
