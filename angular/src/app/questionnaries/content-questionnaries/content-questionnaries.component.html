@@ -1,74 +1,84 @@
 <div class="main">
-    <mat-card class="mainCard">
-        <h1>{{header.title}}</h1>
-        <p>{{header.description}}</p>
-        <div class="section" *ngFor="let section of sections">
-            <mat-card class="cardSection">
-                <div class="section" *ngIf="section.title != 'vazio'">
-                    <div class="id">
-                      <div class="flex">
-                        <h2>{{section.title}}</h2>
-                        <button class="btn" color="primary" (click)="openEditModal(section)"><mat-icon>edit</mat-icon></button>
-                        <button class="btn" color="primary" (click)="deletSection(section.id)"><mat-icon>delete</mat-icon></button>
-                      </div>
-                        <p><b>({{section.idByFormula}})</b></p>
-                    </div>
-                    <p>{{section.description}}</p>
-                    <h2>{{section.subTitle}}</h2>
-                    <hr>
-
-                </div>
-                <div class="questions" *ngFor="let question of questionsBySection[section.id]">
-                    <div class="question" *ngIf="question.title != 'vazio'">
-                        <div class="id">
-                          <div class="flex">
-                            <h3>{{question.title}}</h3> 
-                            <button class="btn" color="primary" (click)="openEditQuestionModal(question)"><mat-icon>edit</mat-icon></button>
-                            <button class="btn" color="primary" (click)="deletQuestion(question.id)"><mat-icon>delete</mat-icon></button>
-                          </div>
-                            <p><b>({{question.idByFormula}})</b></p>
-                        </div>
-                        <p>{{question.description}}</p>
-                      </div>
-                    <div class="alternatives" *ngFor="let alternative of alternativesByQuestions[question.id]">
-                        <div class="radioContainer" *ngIf="alternative.type === 'radio'">
-                          <mat-radio-group aria-label="Select an option" [formControl]="alternative.selected" [name]="question.id">
-                            <mat-radio-button [value]="alternative.value">
-                              {{alternative.title}} (valor: {{alternative.value}})
-                            </mat-radio-button>
-                          </mat-radio-group>
-                        </div>
-                        <div class="inputContainer" *ngIf="alternative.type === 'input'">
-                          <div class="flex">
-                            <h4>{{alternative.title}}</h4>
-                          </div>
-                          <mat-form-field appearance="outline">
-                            <mat-label>{{alternative.value}}</mat-label>
-                            <input type="text" matInput [formControl]="alternative.inputValue">
-                          </mat-form-field>
-                        </div>
-                        <div class="flex">
-                          <div class="multipleContainer" *ngIf="alternative.type === 'multiple'">
-                            <section class="example-section">
-                              <div class="flex">
-                                <p><mat-checkbox [formControl]="alternative.selected">
-                                  {{alternative.title}} (valor: {{alternative.value}})
-                                </mat-checkbox></p>
-                              </div>
-                            </section>
-                        </div>
-                        <button class="btn" color="primary" (click)="openEditAlternativeModal(alternative)"><mat-icon>edit</mat-icon></button>
-                        <button class="btn" color="primary" (click)="deletAlternative(alternative.id)"><mat-icon>delete</mat-icon></button>
-                      </div>
-                      </div>
-                      <button mat-flat-button color="primary" (click)="addAlternative(question.id)">Adicionar Alternativa</button>
-                </div>
-                <button mat-flat-button class="addQuestion" color="primary" (click)="addQuestion(section.id)">Adicionar Questão</button>
-            </mat-card>
+  <mat-card class="mainCard">
+    <h1>{{header.title}}</h1>
+    <p>{{header.description}}</p>
+    <div class="section" *ngFor="let section of sections">
+      <mat-card class="cardSection">
+        <div class="section" *ngIf="section.title != 'vazio'">
+          <div class="id">
+            <div class="flex">
+              <h2>{{section.title}}</h2>
+              <button class="btn" color="primary" (click)="openEditModal(section)"><mat-icon>edit</mat-icon></button>
+              <button class="btn" color="primary"
+                (click)="deletSection(section.id)"><mat-icon>delete</mat-icon></button>
+            </div>
+          </div>
+          <p>{{section.description}}</p>
+          <h2>{{section.subTitle}}</h2>
+          <hr>
         </div>
-    </mat-card>
-    <button mat-raised-button color="primary" (click)="viewAnswers()">Concluir</button>
-    <button mat-flat-button color="primary" (click)="addSession(header.id)">Adicionar Sessão</button>
+        <div class="questions" *ngFor="let question of questionsBySection[section.id]">
+          <div class="question" *ngIf="question.title != 'vazio'">
+            <div class="id">
+              <div class="flex">
+                <h3>{{question.title}}</h3>
+                <button class="btn" color="primary"
+                  (click)="openEditQuestionModal(question)"><mat-icon>edit</mat-icon></button>
+                <button class="btn" color="primary"
+                  (click)="deletQuestion(question.id)"><mat-icon>delete</mat-icon></button>
+              </div>
+            </div>
+            <p>{{question.description}}</p>
+          </div>
+          <div class="alternatives" *ngFor="let alternative of alternativesByQuestions[question.id]">
+            <div class="radioContainer" *ngIf="alternative.type === 'radio'">
+              <mat-radio-group aria-label="Select an option" [formControl]="alternative.selected" [name]="question.id">
+                <mat-radio-button [value]="alternative.value">
+                  {{alternative.title}}
+                </mat-radio-button>
+              </mat-radio-group>
+              <button class="btn" color="primary"
+              (click)="openEditAlternativeModal(alternative)"><mat-icon>edit</mat-icon></button>
+            <button class="btn" color="primary"
+              (click)="deletAlternative(alternative.id)"><mat-icon>delete</mat-icon></button>
+            </div>
+            <div class="inputContainer" *ngIf="alternative.type === 'input'">
+              <div class="flex">
+                <h4>{{alternative.title}}</h4>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-label>{{alternative.value}}</mat-label>
+                <input type="text" matInput [formControl]="alternative.inputValue">
+              </mat-form-field>
+              <button class="btn" color="primary"
+              (click)="openEditAlternativeModal(alternative)"><mat-icon>edit</mat-icon></button>
+            <button class="btn" color="primary"
+              (click)="deletAlternative(alternative.id)"><mat-icon>delete</mat-icon></button>
+            </div>
+            <div class="flex">
+              <div class="multipleContainer" *ngIf="alternative.type === 'multiple'">
+                <section class="example-section">
+                  <div class="flex">
+                    <p><mat-checkbox [formControl]="alternative.selected">
+                        {{alternative.title}}
+                      </mat-checkbox></p>
+                  </div>
+                </section>
+                <button class="btn" color="primary"
+                (click)="openEditAlternativeModal(alternative)"><mat-icon>edit</mat-icon></button>
+              <button class="btn" color="primary"
+                (click)="deletAlternative(alternative.id)"><mat-icon>delete</mat-icon></button>
+              </div>
+            </div>
+          </div>
+          <button mat-flat-button color="primary" (click)="addAlternative(question.id)">Adicionar Alternativa</button>
+        </div>
+        <button mat-flat-button class="addQuestion" color="primary" (click)="addQuestion(section.id)">Adicionar
+          Questão</button>
+      </mat-card>
+    </div>
+    <button mat-raised-button color="primary" (click)="viewAnswers()">Responder Questionários</button>
+  </mat-card>
 </div>
 
 <app-create-session [headerId]="idSessions" *ngIf="sessionsAdd != false"></app-create-session>

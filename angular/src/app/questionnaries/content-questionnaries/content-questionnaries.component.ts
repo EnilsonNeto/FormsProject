@@ -58,12 +58,9 @@ export class ContentQuestionnariesComponent extends AppComponentBase implements 
   getSection() {
     this._sectionService.getHeaderQuestionnarieId(this.header.id).subscribe(
       (data: any) => {
-        this.sections = data.items.sort((a: any, b: any) => {
-          const idA = parseInt(a.idByFormula.replace('id', '')) || 0;
-          const idB = parseInt(b.idByFormula.replace('id', '')) || 0;
-
-          return idA - idB;
-        });
+        console.log(data.items);
+        
+        this.sections = data.items
         this.sections.forEach(section => {
           this.getQuestionsBySession(section.id);
         });
@@ -74,12 +71,7 @@ export class ContentQuestionnariesComponent extends AppComponentBase implements 
   getQuestionsBySession(id: any) {
     this._questionService.getListBySectionId(id).subscribe(
       (data: any) => {
-        this.questionsBySection[id] = data.items.sort((a: any, b: any) => {
-          const idA = parseInt(a.idByFormula.replace('id', '')) || 0;
-          const idB = parseInt(b.idByFormula.replace('id', '')) || 0;
-
-          return idA - idB;
-        });
+        this.questionsBySection[id] = data.items;
 
         this.questionsBySection[id].forEach(question => {
           this.getAlternativesByQuestion(question.id);

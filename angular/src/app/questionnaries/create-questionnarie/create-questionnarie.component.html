@@ -16,11 +16,7 @@
                                 <mat-label>Descrição da Ferramenta</mat-label>
                                 <input type="text" matInput formControlName="description">
                             </mat-form-field>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Formula da Ferramenta</mat-label>
-                                <input type="text" matInput formControlName="formula">
-                            </mat-form-field>
-                            <h3>Esta ferramenta será obrigatoria?*</h3>
+                            <h3>Este Questionario será obrigatorio?*</h3>
                             <mat-radio-group formControlName="isRequired" class="radios">
                                 <mat-radio-button value="true" 
                                 (click)="updateIsRequired('true')">Sim</mat-radio-button>
@@ -53,12 +49,6 @@
                                 <mat-label>Descrição da Sessão</mat-label>
                                 <input type="text" matInput formControlName="description">
                             </mat-form-field>
-                            <div class="addFormulaQuestionary" *ngIf="section.showFormula">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Formula da Sessão</mat-label>
-                                    <input type="text" matInput formControlName="formula">
-                                </mat-form-field>
-                            </div>
                             <div class="Separation"></div>
                             <div class="AddInfo">
                                 <button (click)="addQuestion(i)" mat-flat-button color="primary"
@@ -119,7 +109,6 @@
             <mat-card class="buttonsCard">
                 <p><b>Adicionar Separadamente</b></p>
                 <div class="btnGroup">
-                    <button (click)="addSection()" mat-flat-button color="primary">Adicionar Sessão</button>
                     <button (click)="addQuestionWithInvisibleSection()" mat-flat-button color="primary">Adicionar
                         Pergunta</button>
                     <button (click)="addAlternativeWithInvisibleSection()" mat-flat-button color="primary">Adicionar
@@ -129,7 +118,7 @@
         </div>
         <hr>
         <div class="remove">
-            <button matStepperPrevious (click)="createQuestionnarie()" mat-flat-button color="primary">Criar
+            <button matStepperPrevious [disabled]="isChecked == null && headerFormGroup.invalid" (click)="createQuestionnarie()" mat-flat-button color="primary">Criar
                 Ferramenta</button>
         </div>
     </mat-card>

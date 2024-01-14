@@ -6,13 +6,14 @@
 }
 
 .example-card {
-    max-width: 250px;
+    width: 100%;
     text-align: center;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 1rem;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .example-header-image {
@@ -49,4 +50,19 @@
     display: flex;
     flex-direction: row;
     gap: 15px;
+}
+
+.topInfos {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 10px;
+    gap: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: baseline;
+    padding: 15px;
+}
+
+.Separation {
+    border-top: 2px solid #CED4DA;
 }
